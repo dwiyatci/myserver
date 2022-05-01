@@ -1,0 +1,35 @@
+{
+  "name": "myserver",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "install:clean": "yarn upgrade || yarn install",
+    "up": "yarn upgrade-interactive --latest",
+    "start": "nodemon ./server.js",
+    "xgreet": "cross-env-shell GREETING=Hi NAME=Joe 'echo $GREETING && echo $NAME'",
+    "parentScript": "cross-env GREET=\"Joe\" npm run childScript",
+    "childScript": "cross-env-shell \"echo Hello $GREET\"",
+    "foo": "cross-env FOO=42 BAR=43 yarn bar",
+    "bar": "echo $FOO && echo $BAR",
+    "greetDriver": "cross-env GREETING=Hi NAME=Joe npm run greet",
+    "greet": "npm run greet0 && npm run greet1 && npm run greet2",
+    "greet0": "cross-env-shell echo unquoted $GREETING $NAME",
+    "greet1": "cross-env-shell \"echo doubleQuotes $GREETING $NAME\"",
+    "greet2": "cross-env-shell 'echo singleQuotes $GREETING $NAME'",
+    "nginx": "sudo nginx -p \"$(pwd)\" -c nginx.conf",
+    "socat": "socat -v tcp-listen:9001,fork tcp:localhost:9000"
+  },
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "5.0.0-beta.1",
+    "helmet": "5.0.2",
+    "nocache": "3.0.3",
+    "self-signed-cert": "1.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "7.0.3",
+    "nodemon": "2.0.16",
+    "prettier": "2.6.2"
+  }
+}

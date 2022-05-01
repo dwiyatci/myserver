@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Title</title>
+
+    <!--    <style>-->
+    <!--      html {-->
+    <!--        background-color: azure;-->
+    <!--      }-->
+    <!--    </style>-->
+  </head>
+  <body>
+    <div id="app">
+      <div>we don't need no education, we don't need no thoughts control</div>
+      <button onclick="onClick()">click</button>
+    </div>
+
+    <script>
+      const sheet = createSheet();
+
+      /**
+       *
+       * @see https://davidwalsh.name/add-rules-stylesheets
+       */
+      function createSheet() {
+        // Create the <style> tag
+        const style = document.createElement('style');
+
+        // Add a media (and/or media query) here if you'd like!
+        // style.setAttribute('media', 'screen')
+        // style.setAttribute('media', 'only screen and (max-width : 1024px)')
+
+        // WebKit hack :(
+        style.appendChild(document.createTextNode(''));
+
+        // Add the <style> element to the page
+        document.head.appendChild(style);
+
+        return style.sheet;
+      }
+
+      function onClick() {
+        if (sheet.cssRules.length === 0) {
+          // sheet.insertRule('html { color: blue; }');
+          // sheet.insertRule('html { background-color: transparent !important; }');
+          sheet.insertRule('html { display: none !important; }');
+
+          setTimeout(() => {
+            sheet.deleteRule(0);
+          }, 2000);
+        } else {
+          sheet.deleteRule(0);
+        }
+      }
+    </script>
+
+    <!--    <iframe-->
+    <!--      style="-->
+    <!--        position: fixed;-->
+    <!--        top: 0;-->
+    <!--        left: 0;-->
+    <!--        bottom: 0;-->
+    <!--        right: 0;-->
+    <!--        width: 100%;-->
+    <!--        height: 100%;-->
+    <!--        border: none;-->
+    <!--        margin: 0;-->
+    <!--        padding: 0;-->
+    <!--        overflow: hidden;-->
+    <!--        zindex: 999999;-->
+    <!--      "-->
+    <!--    ></iframe>-->
+  </body>
+</html>
